@@ -22,7 +22,7 @@ npm start
 
 ## Widget Integration
 The widget can be found in the following location:
-/image/easy-Image/dist/1.0.0/io.entidad.EasyImage.mpk
+/image/easy-Image/dist/1.0.0/io.entidad.widget.EasyImage.mpk
 Copy the widget and paste it inside the "widgets" folder in your application. After synchronizing the application, locate the widget with the name "entidad.EasyImage.mpk" under the tools. You can then drag and drop it into a container
 
 ## Widget Parameters
