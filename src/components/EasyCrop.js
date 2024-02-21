@@ -68,7 +68,7 @@ export default function EasyCrop({image,onSave,id}){
 			unit:'px'
 		});
 	};
-	 const onSaveImage=useCallback(async()=>{
+	const onSaveImage=useCallback(async()=>{
 		 try{
 			const time=new Date().toLocaleTimeString();
 			const croppedImage=await saveCanvas(imgRef.current,completedCrop,scale,rotation);		
@@ -80,7 +80,20 @@ export default function EasyCrop({image,onSave,id}){
 				blob,
 				function(){
 					console.warn("Image successfully saved");
-					onSave.execute();
+					if(
+						onSave
+					){
+						if(
+							onSave.canExecute&&
+							onSave.isAuthorized&&
+							!(
+								onSave.isExecuting&&
+								onSave.disabledDuringExecution
+							)
+						){
+							onSave.execute();
+						}
+					}
 				},
 				function(e){
 					console.error(e,"Error while saving image");
@@ -157,15 +170,18 @@ export default function EasyCrop({image,onSave,id}){
 								//SaveImage(e)
 							}}
 							scale={scale}
-						>												
+						>
 							<TransformWrapper
 								ref={panZoomRef}
 								initialScale={1}
-									wheel={{
+								wheel={{
 									step:8
 								}}
 								initialPositionX={0}
 								initialPositionY={0}
+								limitToBounds={false}
+								disabled={true}
+								minScale={0}
 							>
 								<TransformComponent>
 									<img
@@ -178,8 +194,8 @@ export default function EasyCrop({image,onSave,id}){
 											//'transform':`scale(${scale}) rotate(${rotation}deg)`,
 											//'transform-origin':`${xImage}px ${yImage}px`
 										}}
-																		onLoad={onImageLoad}
-									/>												
+										onLoad={onImageLoad}
+									/>
 								</TransformComponent>
 							</TransformWrapper>
 						</ReactCrop>
