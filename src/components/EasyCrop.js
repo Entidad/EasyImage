@@ -1,38 +1,33 @@
-import'./ImageCrop.css';
-import{useState,useRef,useEffect,createElement,useCallback}from'react';
-import ReactCrop from'react-image-crop';
-import'react-image-crop/dist/ReactCrop.css';
-import{canvasPreview}from'./Crop';
-import{saveCanvas}from'./Crop';
-import'../ui/EasyImage.css';
-import{TransformWrapper,TransformComponent}from'@tamara027/react-zoom-pan-pinch'
+import"./ImageCrop.css";
+import{useState,useRef,useEffect,createElement,useCallback}from"react";
+import ReactCrop from"react-image-crop";
+import"react-image-crop/dist/ReactCrop.css";
+import{canvasPreview}from"./Crop";
+import{saveCanvas}from"./Crop";
+import"../ui/EasyImage.css";
+//import{TransformWrapper,TransformComponent}from"@tamara027/react-zoom-pan-pinch"
+import{TransformWrapper,TransformComponent}from"react-zoom-pan-pinch";
 export default function EasyCrop({image,onSave,id}){
 	const imgRef=useRef(null);
 	const panZoomRef=useRef(null);
+	const reactCropRef=useRef(null);
 	const[crop,setCrop]=useState(null);
 	const[rotation,setRotation]=useState(0);
 	const[scale,setScale]=useState(1);
-	const[translationX,setTranslationX]=useState(0);//ockert//defunct
-	const[translationY,setTranslationY]=useState(0);//ockert//defunct
-	const[xNew,setXNew]=useState(0);//ockert
-	const[yNew,setYNew]=useState(0);//ockert
-	const[xLast,setXLast]=useState(0);//ockert
-	const[yLast,setYLast]=useState(0);//ockert
-	const[xImage,setXImage]=useState(0);//ockert
-	const[yImage,setYImage]=useState(0);//ockert
-	const zoomIntensity=0.05;//ockert
-	const[height,setHeight]=useState('');
-	const[width,setWidth]=useState('');
+	const[height,setHeight]=useState("");
+	const[width,setWidth]=useState("");
 	const[completedCrop,setCompletedCrop]=useState();
+	const[cropDisabled,setCropDisabled]=useState(false);
 	const imageUrl=image;
 	const[loading,setLoading]=useState(true);
 	const[imageLoaded,setImageLoaded]=useState(false);
+	const toggleCropPan=()=>{
+		setCropDisabled(!cropDisabled);
+	};
 	const zoomIn=(e)=>{
-		//setScale((scale) => Math.min(scale + 0.1, 3));
 		panZoomRef.current.zoomIn();
 	};
 	const zoomOut=()=>{
-		//setScale((scale) => Math.max(scale - 0.1, 0.1)); // Adjust the minimum zoom level as needed
 		panZoomRef.current.zoomOut();
 	};
 	const rotateRight=()=>{
@@ -79,7 +74,6 @@ export default function EasyCrop({image,onSave,id}){
 				{},
 				blob,
 				function(){
-					console.warn("Image successfully saved");
 					if(
 						onSave
 					){
@@ -125,6 +119,12 @@ export default function EasyCrop({image,onSave,id}){
 				<div className="toolbox" style={{display:"flex",flexDirection:"row",flexWrap:"nowrap"}}>
 					<table style={{width:"100%"}}>
 						<tr>
+							<td style={{width:"7.5%"}}>
+								<button type="button" className={!cropDisabled?"toolbox-button-active":"toolbox-button"} onClick={toggleCropPan}>Crop</button>
+							</td>
+							<td style={{width:"7.5%"}}>
+								<button type="button" className={cropDisabled?"toolbox-button-active":"toolbox-button"} onClick={toggleCropPan}>Pan</button>
+							</td>
 							<td style={{width:"15%"}}>
 								<button className="toolbox-button" onClick={zoomIn} style={{ width: "100%" }}>Zoom In</button>
 							</td>
@@ -147,58 +147,74 @@ export default function EasyCrop({image,onSave,id}){
 					</table>
 				</div>
 				<div className="container" >
-					<div className="crop-container">		 
+					<div className="crop-container">
 						{loading&&!imageLoaded&&<progress value="50" max="100"></progress>}
-						<ReactCrop
-							src={imageUrl}
-							crop={crop}
-							onChange={(_,percentCrop)=>{
-								setCrop(percentCrop);
+						<TransformWrapper
+							ref={panZoomRef}
+							initialScale={1}
+							wheel={{
+								step:8
 							}}
-							onComplete={(e)=>{	
-								if(e?.height==0||e?.width==0){
-									setCompletedCrop({
-										x:0,
-										y:0,
-										height:height,
-										width:width,
-										unit:'px'
-									});
-								}else{
-									setCompletedCrop(e);													
-								}
-								//SaveImage(e)
+							initialPositionX={0}
+							initialPositionY={0}
+							limitToBounds={false}
+							minScale={0.1}
+							panning={{
+								wheelPanning:true,
+								panning:true
 							}}
-							scale={scale}
+							onPanningStart={(e)=>{
+							}}
+							onPanning={(e)=>{
+							}}
+							onDrag={(e)=>{
+							}}
+							onDragStart={(e)=>{
+							}}
 						>
-							<TransformWrapper
-								ref={panZoomRef}
-								initialScale={1}
-								wheel={{
-									step:8
-								}}
-								initialPositionX={0}
-								initialPositionY={0}
-								limitToBounds={false}
-								disabled={true}
-								minScale={0}
-							>
-								<TransformComponent>
+							<TransformComponent>
+								<ReactCrop
+									ref={reactCropRef}
+									src={imageUrl}
+									crop={crop}
+									onChange={(_,percentCrop)=>{
+										setCrop(percentCrop);
+									}}
+									onComplete={(e)=>{	
+										if(e?.height==0||e?.width==0){
+											setCompletedCrop({
+												x:0,
+												y:0,
+												height:height,
+												width:width,
+												unit:'px'
+											});
+										}else{
+											setCompletedCrop(e);													
+										}
+										//SaveImage(e)
+									}}
+									scale={scale}
+									disabled={cropDisabled}
+									onDragStart={(e)=>{}}
+									onDragEnd={(e)=>{}}
+								>
 									<img
 										ref={imgRef}
 										crossorigin='anonymous'
 										alt='Error'
 										src={imageUrl}
 										style={{
+											'transform':`rotate(${rotation}deg)`,
 											//'transform':`scale(${scale}) rotate(${rotation}deg) translate(${xNew}px, ${yNew}px)`,
 											//'transform':`scale(${scale}) rotate(${rotation}deg)`,
 											//'transform-origin':`${xImage}px ${yImage}px`
 										}}
 										onLoad={onImageLoad}
 									/>
-								</TransformComponent>
-							</TransformWrapper>
-						</ReactCrop>
+								</ReactCrop>
+							</TransformComponent>
+						</TransformWrapper>
 					</div>
 				</div>
 			</div>
