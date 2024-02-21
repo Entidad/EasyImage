@@ -15,6 +15,7 @@ public class UserActionsRegistrar
     registrator.registerUserAction(encryption.actions.ValidatePrivateKeyRing.class);
     registrator.registerUserAction(main.actions.ja_get_admin_user_name.class);
     registrator.registerUserAction(main.actions.ja_get_admin_user_rolename.class);
+    registrator.registerUserAction(main.actions.ja_guid.class);
     registrator.registerUserAction(system.actions.VerifyPassword.class);
   }
 }

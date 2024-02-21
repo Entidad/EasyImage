@@ -1,7 +1,7 @@
 {
   "name": "easyimage",
   "widgetName": "EasyImage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Image Cropping/Zooming/Rotation",
   "copyright": "© Mendix Technology BV 2022. All rights reserved.",
   "author": "Madhubalan Pushparajan",
@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.12.4",
+    "@tamara027/react-zoom-pan-pinch": "^1.6.1",
     "classnames": "^2.2.6",
     "react-easy-crop": "^5.0.3",
     "react-image-crop": "^11.0.1"
