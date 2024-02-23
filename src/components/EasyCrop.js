@@ -6,7 +6,7 @@ import{canvasPreview}from"./Crop";
 import{saveCanvas}from"./Crop";
 import"../ui/EasyImage.css";
 import{TransformWrapper,TransformComponent}from"react-zoom-pan-pinch";
-export default function EasyCrop({image,onSave,id}){
+export default function EasyCrop({image,onSave,id,translations}){
 	const imgRef=useRef(null);
 	const panZoomRef=useRef(null);
 	const reactCropRef=useRef(null);
@@ -143,35 +143,35 @@ export default function EasyCrop({image,onSave,id}){
 					<table style={{width:"100%"}}>
 						<tr>
 							<td style={{width:"7.5%"}}>
-								<button type="button" className={!cropDisabled?"toolbox-button-active":"toolbox-button"} onClick={toggleCropPan}>Crop</button>
+								<button type="button" className={!cropDisabled?"toolbox-button-active":"toolbox-button"} onClick={toggleCropPan}>{translations.crop}</button>
 							</td>
 							<td style={{width:"7.5%"}}>
-								<button type="button" className={cropDisabled?"toolbox-button-active":"toolbox-button"} onClick={toggleCropPan}>Pan</button>
+								<button type="button" className={cropDisabled?"toolbox-button-active":"toolbox-button"} onClick={toggleCropPan}>{translations.pan}</button>
 							</td>
-							<td style={{width:"15%"}}>
-								<button className="toolbox-button" onClick={zoomIn} style={{ width: "100%" }}>Zoom In</button>
+							<td style={{width:"10%"}}>
+								<button className="toolbox-button" onClick={zoomIn} style={{ width: "100%" }}>{translations.zoomin}</button>
 							</td>
-							<td style={{width:"15%" }}>
-								<button className="toolbox-button" onClick={zoomOut} style={{ width: "100%" }}>Zoom Out</button>
+							<td style={{width:"10%" }}>
+								<button className="toolbox-button" onClick={zoomOut} style={{ width: "100%" }}>{translations.zoomout}</button>
 							</td> 
-							<td style={{width:"20%"}}>
-								<button onClick={handleDownload} style={{width:"100%" }}>Download</button>
+							<td style={{width:"10%"}}>
+								<button onClick={handleDownload} style={{width:"100%" }}>{translations.download}</button>
 							</td>
-							<td style={{width:"20%"}}>
+							<td style={{width:"10%"}}>
 								<button onClick={()=>{
 									inputRef.current.click();
-								}} style={{width:"100%" }}>Upload</button>
-								<input style="display:none;" ref={inputRef} type="file" accept=".jpef, .png, .jpg" onChange={handleUpload} />
+								}} style={{width:"100%" }}>{translations.upload}</button>
+								<input style={{display:"none"}} ref={inputRef} type="file" accept=".jpef, .png, .jpg" onChange={handleUpload} />
 							</td>
 
 							<td style={{width:"20%"}}>
-								<button onClick={rotateRight} style={{width:"100%"}}>Rotate</button>
+								<button onClick={rotateRight} style={{width:"100%"}}>{translations.rotateclockwise}</button>
 							</td>
 							<td style={{width:"20%"}}>
-								<button onClick={rotateAntiRight} style={{width:"100%"}}>Rotate	Anticlockwise</button>
+								<button onClick={rotateAntiRight} style={{width:"100%"}}>{translations.rotateanticlockwise}</button>
 							</td>
 							<td style={{width:"20%"}}>
-								<button onClick={onSaveImage} style={{width:"100%"}}>Save</button>
+								<button onClick={onSaveImage} style={{width:"100%"}}>{translations.save}</button>
 							</td>
 						</tr>
 					</table>

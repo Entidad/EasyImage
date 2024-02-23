@@ -26,7 +26,80 @@
 				<caption>On save</caption>
 				<description />
 			</property>
-
+		</propertyGroup>
+		<propertyGroup caption="Translations">				  
+			<property key="translation_crop" type="textTemplate" required="false">
+				<caption>Crop</caption>
+				<description/>
+				<translations>
+					<translation lang="en_US">Crop</translation>
+					<translation lang="es_MX">Recorta</translation>
+				</translations>
+			</property>
+			<property key="translation_pan" type="textTemplate" required="false">
+				<caption>Pan</caption>
+				<description/>
+				<translations>
+					<translation lang="en_US">Pan</translation>
+					<translation lang="es_MX">Mover</translation>
+				</translations>
+			</property>
+			<property key="translation_zoomin" type="textTemplate" required="false">
+				<caption>Zoom In</caption>
+				<description/>
+				<translations>
+					<translation lang="en_US">Zoom In</translation>
+					<translation lang="es_MX">Ampliación</translation>
+				</translations>
+			</property>
+			<property key="translation_zoomout" type="textTemplate" required="false">
+				<caption>Zoom Out</caption>
+				<description/>
+				<translations>
+					<translation lang="en_US">Zoom Out</translation>
+					<translation lang="es_MX">Alejar</translation>
+				</translations>
+			</property>
+			<property key="translation_download" type="textTemplate" required="false">
+				<caption>Download</caption>
+				<description/>
+				<translations>
+					<translation lang="en_US">Download</translation>
+					<translation lang="es_MX">Descargar</translation>
+				</translations>
+			</property>
+			<property key="translation_upload" type="textTemplate" required="false">
+				<caption>Upload</caption>
+				<description/>
+				<translations>
+					<translation lang="en_US">Upload</translation>
+					<translation lang="es_MX">Cargar</translation>
+				</translations>
+			</property>
+			<property key="translation_rotateclockwise" type="textTemplate" required="false">
+				<caption>Rotate Clockwise</caption>
+				<description/>
+				<translations>
+					<translation lang="en_US">Rotate Clockwise</translation>
+					<translation lang="es_MX">Sentido Horario</translation>
+				</translations>
+			</property>
+			<property key="translation_rotateanticlockwise" type="textTemplate" required="false">
+				<caption>Rotate Anticlockwise</caption>
+				<description/>
+				<translations>
+					<translation lang="en_US">Rotate Anticlockwise</translation>
+					<translation lang="es_MX">Sentido Antihorario</translation>
+				</translations>
+			</property>
+			<property key="translation_save" type="textTemplate" required="false">
+				<caption>Save</caption>
+				<description/>
+				<translations>
+					<translation lang="en_US">Save</translation>
+					<translation lang="es_MX">Guardar</translation>
+				</translations>
+			</property>
 		</propertyGroup>
 	</properties>
 </widget>
