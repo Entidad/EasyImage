@@ -25,6 +25,12 @@ public class Microflows
 		Map<java.lang.String, Object> params = new HashMap<>();
 		Core.microflowCall("Main.ivk_sync_adminuser").withParams(params).execute(context);
 	}
+	public static boolean mf_acr_image(IContext context, main.proxies.Image _image)
+	{
+		Map<java.lang.String, Object> params = new HashMap<>();
+		params.put("Image", _image == null ? null : _image.getMendixObject());
+		return (java.lang.Boolean) Core.microflowCall("Main.mf_acr_image").withParams(params).execute(context);
+	}
 	public static boolean mf_bco_image(IContext context, main.proxies.Image _image)
 	{
 		Map<java.lang.String, Object> params = new HashMap<>();

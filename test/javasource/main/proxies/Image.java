@@ -16,7 +16,7 @@ public class Image extends system.proxies.Image
 	 */
 	public enum MemberNames
 	{
-		ImageURL("ImageURL"),
+		guid_("guid_"),
 		PublicThumbnailPath("PublicThumbnailPath"),
 		FileID("FileID"),
 		Name("Name"),
@@ -84,39 +84,39 @@ public class Image extends system.proxies.Image
 	}
 
 	/**
-	 * @return value of ImageURL
+	 * @return value of guid_
 	 */
-	public final java.lang.String getImageURL()
+	public final java.lang.String getguid_()
 	{
-		return getImageURL(getContext());
+		return getguid_(getContext());
 	}
 
 	/**
 	 * @param context
-	 * @return value of ImageURL
+	 * @return value of guid_
 	 */
-	public final java.lang.String getImageURL(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getguid_(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (java.lang.String) getMendixObject().getValue(context, MemberNames.ImageURL.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.guid_.toString());
 	}
 
 	/**
-	 * Set value of ImageURL
-	 * @param imageurl
+	 * Set value of guid_
+	 * @param guid_
 	 */
-	public final void setImageURL(java.lang.String imageurl)
+	public final void setguid_(java.lang.String guid_)
 	{
-		setImageURL(getContext(), imageurl);
+		setguid_(getContext(), guid_);
 	}
 
 	/**
-	 * Set value of ImageURL
+	 * Set value of guid_
 	 * @param context
-	 * @param imageurl
+	 * @param guid_
 	 */
-	public final void setImageURL(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String imageurl)
+	public final void setguid_(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String guid_)
 	{
-		getMendixObject().setValue(context, MemberNames.ImageURL.toString(), imageurl);
+		getMendixObject().setValue(context, MemberNames.guid_.toString(), guid_);
 	}
 
 	@java.lang.Override

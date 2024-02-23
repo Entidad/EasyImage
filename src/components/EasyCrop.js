@@ -5,12 +5,12 @@ import"react-image-crop/dist/ReactCrop.css";
 import{canvasPreview}from"./Crop";
 import{saveCanvas}from"./Crop";
 import"../ui/EasyImage.css";
-//import{TransformWrapper,TransformComponent}from"@tamara027/react-zoom-pan-pinch"
 import{TransformWrapper,TransformComponent}from"react-zoom-pan-pinch";
 export default function EasyCrop({image,onSave,id}){
 	const imgRef=useRef(null);
 	const panZoomRef=useRef(null);
 	const reactCropRef=useRef(null);
+	const inputRef=useRef(null);
 	const[crop,setCrop]=useState(null);
 	const[rotation,setRotation]=useState(0);
 	const[scale,setScale]=useState(1);
@@ -18,6 +18,7 @@ export default function EasyCrop({image,onSave,id}){
 	const[width,setWidth]=useState("");
 	const[completedCrop,setCompletedCrop]=useState();
 	const[cropDisabled,setCropDisabled]=useState(false);
+	const[file,setFile]=useState();
 	const imageUrl=image;
 	const[loading,setLoading]=useState(true);
 	const[imageLoaded,setImageLoaded]=useState(false);
@@ -50,6 +51,16 @@ export default function EasyCrop({image,onSave,id}){
 	const handleDownload=async()=>{
 		await canvasPreview(imgRef.current,completedCrop,scale,rotation);
 	};
+	const handleUpload=async(e,b,c)=>{
+		const reader = new FileReader();
+		const file = e.target.files[0];
+		if (reader !== undefined && file !== undefined) {
+			reader.onloadend = () => {
+				imgRef.current.setAttribute("src",reader.result)
+			}
+			reader.readAsDataURL(file);
+		}
+	};
 	const onImageLoad=(e)=>{
 		setLoading(false);
 		setImageLoaded(true);
@@ -64,53 +75,65 @@ export default function EasyCrop({image,onSave,id}){
 		});
 	};
 	const onSaveImage=useCallback(async()=>{
-		 try{
+		try{
 			const time=new Date().toLocaleTimeString();
-			const croppedImage=await saveCanvas(imgRef.current,completedCrop,scale,rotation);		
-			const blob=toBLob(croppedImage);		
-			await mx.data.saveDocument(
-				id,
-				"Image"+id+"_"+time+".jpg",
-				{},
-				blob,
-				function(){
-					if(
-						onSave
-					){
-						if(
-							onSave.canExecute&&
-							onSave.isAuthorized&&
-							!(
-								onSave.isExecuting&&
-								onSave.disabledDuringExecution
-							)
-						){
-							onSave.execute();
+			const croppedImage=await saveCanvas(imgRef.current,completedCrop,scale,rotation);
+			const blob=toBLob(croppedImage);
+			mx.data.get({
+				guid:id,
+				callback:async function(obj){
+					mx.data.commit({
+						mxobj:obj,
+						callback:async function(){
+							await mx.data.saveDocument(
+								id,
+								"Image"+id+"_"+time+".jpg",
+								{},
+								blob,
+								async function(){
+									if(
+										onSave
+									){
+										if(
+											onSave.canExecute&&
+											onSave.isAuthorized&&
+											!(
+												onSave.isExecuting&&
+												onSave.disabledDuringExecution
+											)
+										){
+											await onSave.execute();
+											imgRef.current.setAttribute("src",croppedImage);
+										}
+									}
+								},
+								function(e){
+									console.error(e,"Error while saving image");
+								}
+							);
+						},
+						error: function(e) {
+							console.error("Could not commit object:", e);
 						}
-					}
-				},
-				function(e){
-					console.error(e,"Error while saving image");
+					});
 				}
-			);
+			});
 		}catch(e){
 			console.error(e);
 		}
 	},[completedCrop,rotation,scale,imgRef.current]);
 	const toBLob=base64Image=>{
-		// Remove the data:image/jpeg;base64, part from the base64 string
+		//Remove the data:image/jpeg;base64, part from the base64 string
 		const base64Data=base64Image.split(",")[1];
-		console.log("base64Data",base64Data)
-		// Convert the base64 data to a binary array
+		//Convert the base64 data to a binary array
 		const binaryData=atob(base64Data);
-		// Create a Uint8Array from the binary data
+		//Create a Uint8Array from the binary data
 		const arrayBuffer=new Uint8Array(binaryData.length);
 		for(let i=0;i<binaryData.length;i++) {
 			arrayBuffer[i]=binaryData.charCodeAt(i);
 		}
-		// Create a Blob object from the Uint8Array
+		//Create a Blob object from the Uint8Array
 		const blob=new Blob([arrayBuffer],{type:"image/jpeg"});
-		console.log("The blob",blob)
 		return blob;
 	};
 	return(
@@ -134,6 +157,13 @@ export default function EasyCrop({image,onSave,id}){
 							<td style={{width:"20%"}}>
 								<button onClick={handleDownload} style={{width:"100%" }}>Download</button>
 							</td>
+							<td style={{width:"20%"}}>
+								<button onClick={()=>{
+									inputRef.current.click();
+								}} style={{width:"100%" }}>Upload</button>
+								<input style="display:none;" ref={inputRef} type="file" accept=".jpef, .png, .jpg" onChange={handleUpload} />
+							</td>
+
 							<td style={{width:"20%"}}>
 								<button onClick={rotateRight} style={{width:"100%"}}>Rotate</button>
 							</td>
@@ -192,7 +222,6 @@ export default function EasyCrop({image,onSave,id}){
 										}else{
 											setCompletedCrop(e);													
 										}
-										//SaveImage(e)
 									}}
 									scale={scale}
 									disabled={cropDisabled}
@@ -202,13 +231,9 @@ export default function EasyCrop({image,onSave,id}){
 									<img
 										ref={imgRef}
 										crossorigin='anonymous'
-										alt='Error'
 										src={imageUrl}
 										style={{
 											'transform':`rotate(${rotation}deg)`,
-											//'transform':`scale(${scale}) rotate(${rotation}deg) translate(${xNew}px, ${yNew}px)`,
-											//'transform':`scale(${scale}) rotate(${rotation}deg)`,
-											//'transform-origin':`${xImage}px ${yImage}px`
 										}}
 										onLoad={onImageLoad}
 									/>
