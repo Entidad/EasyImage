@@ -27,7 +27,13 @@
 				<description />
 			</property>
 		</propertyGroup>
-		<propertyGroup caption="Translations">				  
+		<propertyGroup caption="UI">
+			<property key="renderIcons" type="boolean" defaultValue="false" required="true">
+				<caption>Render Icons</caption>
+				<description/>
+			</property>
+		</propertyGroup>
+		<propertyGroup caption="Translations">
 			<property key="translation_crop" type="textTemplate" required="false">
 				<caption>Crop</caption>
 				<description/>

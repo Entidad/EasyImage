@@ -6,7 +6,7 @@ import{canvasPreview}from"./Crop";
 import{saveCanvas}from"./Crop";
 import"../ui/EasyImage.css";
 import{TransformWrapper,TransformComponent}from"react-zoom-pan-pinch";
-export default function EasyCrop({image,onSave,id,translations}){
+export default function EasyCrop({image,onSave,id,translations,renderIcons}){
 	const imgRef=useRef(null);
 	const panZoomRef=useRef(null);
 	const reactCropRef=useRef(null);
@@ -139,42 +139,21 @@ export default function EasyCrop({image,onSave,id,translations}){
 	return(
 		<div>
 			<div className="toolbox-container">
-				<div className="toolbox" style={{display:"flex",flexDirection:"row",flexWrap:"nowrap"}}>
-					<table style={{width:"100%",zIndex:2}}>
-						<tr>
-							<td style={{width:"7.5%"}}>
-								<button type="button" className={!cropDisabled?"btn btn-success":"btn btn-default"} onClick={toggleCropPan}>{translations.crop}</button>
-							</td>
-							<td style={{width:"7.5%"}}>
-								<button type="button" className={cropDisabled?"btn btn-success":"btn btn-default"} onClick={toggleCropPan}>{translations.pan}</button>
-							</td>
-							<td style={{width:"10%"}}>
-								<button className="btn btn-default" onClick={zoomIn} style={{ width: "100%" }}>{translations.zoomin}</button>
-							</td>
-							<td style={{width:"10%" }}>
-								<button className="btn btn-default" onClick={zoomOut} style={{ width: "100%" }}>{translations.zoomout}</button>
-							</td> 
-							<td style={{width:"10%"}}>
-								<button className="btn btn-default" onClick={handleDownload} style={{width:"100%" }}>{translations.download}</button>
-							</td>
-							<td style={{width:"10%"}}>
-								<button className="btn btn-default" onClick={()=>{
-									inputRef.current.click();
-								}} style={{width:"100%" }}>{translations.upload}</button>
-								<input style={{display:"none"}} ref={inputRef} type="file" accept=".jpeg, .png, .jpg" onChange={handleUpload} />
-							</td>
-
-							<td style={{width:"20%"}}>
-								<button className="btn btn-default" onClick={rotateRight} style={{width:"100%"}}>{translations.rotateclockwise}</button>
-							</td>
-							<td style={{width:"20%"}}>
-								<button className="btn btn-default" onClick={rotateAntiRight} style={{width:"100%"}}>{translations.rotateanticlockwise}</button>
-							</td>
-							<td style={{width:"20%"}}>
-								<button className="btn btn-default" onClick={onSaveImage} style={{width:"100%"}}>{translations.save}</button>
-							</td>
-						</tr>
-					</table>
+				<div className="toolbox" style={{display:"flex"}}>
+					<div className="btn-group" style={{width:"100%",zIndex:2,display:"flex"}}>
+						<button type="button" className={!cropDisabled?"btn btn-success":"btn btn-default"} onClick={toggleCropPan} title={renderIcons?translations.crop:""}>{renderIcons?<span class="glyphicon glyphicon-scissors" aria-hidden="true"></span>:translations.crop}</button>
+						<button type="button" className={cropDisabled?"btn btn-success":"btn btn-default"} onClick={toggleCropPan} title={renderIcons?translations.pan:""}>{renderIcons?<span class="glyphicon glyphicon-move" aria-hidden="true"></span>:translations.pan}</button>
+						<button className="btn btn-default" onClick={zoomIn} style={{ width: "100%" }} title={renderIcons?translations.zoomin:""}>{renderIcons?<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>:translations.zoomin}</button>
+						<button className="btn btn-default" onClick={zoomOut} style={{ width: "100%" }} title={renderIcons?translations.zoomout:""}>{renderIcons?<span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>:translations.zoomout}</button>
+						<button className="btn btn-default" onClick={handleDownload} style={{width:"100%" }} title={renderIcons?translations.download:""}>{renderIcons?<span class="glyphicon glyphicon-save" aria-hidden="true"></span>:translations.download}</button>
+						<button className="btn btn-default" onClick={()=>{
+							inputRef.current.click();
+						}} style={{width:"100%" }} title={renderIcons?translations.upload:""}>{renderIcons?<span class="glyphicon glyphicon-open" aria-hidden="true"></span>:translations.upload}</button>
+						<input style={{display:"none"}} ref={inputRef} type="file" accept=".jpeg, .png, .jpg" onChange={handleUpload} />
+						<button className="btn btn-default" onClick={rotateRight} style={{width:"100%"}} title={renderIcons?translations.rotateclockwise:""}>{renderIcons?<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>:translations.rotateclockwise}</button>
+						<button className="btn btn-default" onClick={rotateAntiRight} style={{width:"100%"}} title={renderIcons?translations.rotateanticlockwise:""}>{renderIcons?<span class="glyphicon glyphicon-refresh icon-flipped" aria-hidden="true"></span>:translations.rotateanticlockwise}</button>
+						<button className="btn btn-default" onClick={onSaveImage} style={{width:"100%"}} title={renderIcons?translations.save:""}>{renderIcons?<span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>:translations.save}</button>
+					</div>
 				</div>
 				<div className="container" >
 					<div className="crop-container">

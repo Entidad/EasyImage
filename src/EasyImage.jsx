@@ -53,7 +53,7 @@ function App(props){
 	return(
 		<div className="io_entidad_widget_easyimage_EasyImage">
 			<header className="io_entidad_widget_easyimage_EasyImage-header">
-				<EasyCrop onSave={props.onSave} image={imageUrl} id={id} translations={translations}/>
+				<EasyCrop onSave={props.onSave} image={imageUrl} id={id} translations={translations} renderIcons={props.renderIcons}/>
 			</header>
 		</div>
 	);
