@@ -143,35 +143,35 @@ export default function EasyCrop({image,onSave,id,translations}){
 					<table style={{width:"100%",zIndex:2}}>
 						<tr>
 							<td style={{width:"7.5%"}}>
-								<button type="button" className={!cropDisabled?"toolbox-button-active":"toolbox-button"} onClick={toggleCropPan}>{translations.crop}</button>
+								<button type="button" className={!cropDisabled?"btn btn-success":"btn btn-default"} onClick={toggleCropPan}>{translations.crop}</button>
 							</td>
 							<td style={{width:"7.5%"}}>
-								<button type="button" className={cropDisabled?"toolbox-button-active":"toolbox-button"} onClick={toggleCropPan}>{translations.pan}</button>
+								<button type="button" className={cropDisabled?"btn btn-success":"btn btn-default"} onClick={toggleCropPan}>{translations.pan}</button>
 							</td>
 							<td style={{width:"10%"}}>
-								<button className="toolbox-button" onClick={zoomIn} style={{ width: "100%" }}>{translations.zoomin}</button>
+								<button className="btn btn-default" onClick={zoomIn} style={{ width: "100%" }}>{translations.zoomin}</button>
 							</td>
 							<td style={{width:"10%" }}>
-								<button className="toolbox-button" onClick={zoomOut} style={{ width: "100%" }}>{translations.zoomout}</button>
+								<button className="btn btn-default" onClick={zoomOut} style={{ width: "100%" }}>{translations.zoomout}</button>
 							</td> 
 							<td style={{width:"10%"}}>
-								<button onClick={handleDownload} style={{width:"100%" }}>{translations.download}</button>
+								<button className="btn btn-default" onClick={handleDownload} style={{width:"100%" }}>{translations.download}</button>
 							</td>
 							<td style={{width:"10%"}}>
-								<button onClick={()=>{
+								<button className="btn btn-default" onClick={()=>{
 									inputRef.current.click();
 								}} style={{width:"100%" }}>{translations.upload}</button>
 								<input style={{display:"none"}} ref={inputRef} type="file" accept=".jpeg, .png, .jpg" onChange={handleUpload} />
 							</td>
 
 							<td style={{width:"20%"}}>
-								<button onClick={rotateRight} style={{width:"100%"}}>{translations.rotateclockwise}</button>
+								<button className="btn btn-default" onClick={rotateRight} style={{width:"100%"}}>{translations.rotateclockwise}</button>
 							</td>
 							<td style={{width:"20%"}}>
-								<button onClick={rotateAntiRight} style={{width:"100%"}}>{translations.rotateanticlockwise}</button>
+								<button className="btn btn-default" onClick={rotateAntiRight} style={{width:"100%"}}>{translations.rotateanticlockwise}</button>
 							</td>
 							<td style={{width:"20%"}}>
-								<button onClick={onSaveImage} style={{width:"100%"}}>{translations.save}</button>
+								<button className="btn btn-default" onClick={onSaveImage} style={{width:"100%"}}>{translations.save}</button>
 							</td>
 						</tr>
 					</table>

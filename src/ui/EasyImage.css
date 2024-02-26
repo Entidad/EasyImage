@@ -16,11 +16,14 @@
 }
 .io_entidad_widget_easyimage_EasyImage button{
 	z-index:2;
+	width:100%!important;
+	/*
 	cursor:pointer;
 	background-color:#000;
 	color:#fff;
 	padding:10px 0;
 	width:100%;
+	*/
 }
 .io_entidad_widget_easyimage_EasyImage .cropped-image{
 	/*height:400px;*/
@@ -87,7 +90,4 @@
 	display:flex;
 	justify-content:center;
 	align-items:center;
-}
-.io_entidad_widget_easyimage_EasyImage .toolbox-button-active{
-	background:#020557;
 }
