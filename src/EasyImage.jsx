@@ -51,8 +51,8 @@ function App(props){
 		}
 	},[props.guid.status,props.image.status]);
 	return(
-		<div className="App">
-			<header className="App-header">
+		<div className="io_entidad_widget_easyimage_EasyImage">
+			<header className="io_entidad_widget_easyimage_EasyImage-header">
 				<EasyCrop onSave={props.onSave} image={imageUrl} id={id} translations={translations}/>
 			</header>
 		</div>

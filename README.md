@@ -23,6 +23,7 @@ To set up the project, install the following packages:
 npm i react-image-crop
 npm i react-easy-crop
 npm i @material-ui/core
+```
 
 ## Getting Started
 

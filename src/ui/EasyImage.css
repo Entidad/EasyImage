@@ -1,18 +1,20 @@
-.App{
+.io_entidad_widget_easyimage_EasyImage{
 	background-color:#c4c4c4;
 	font-family:'Helvetica Neue',sans-serif;
+	overflow:hidden;
+	height:500px;
 }
-.App-header{
+.io_entidad_widget_easyimage_EasyImage-header{
 	flex-direction:column;
 	align-items:center;
 	justify-content:flex-start;
 	color:#fff;
 }
-.App label{
+.io_entidad_widget_easyimage_EasyImage label{
 	font-weight:bold;
 	padding-left:10px;
 }
-.App button{
+.io_entidad_widget_easyimage_EasyImage button{
 	z-index:2;
 	cursor:pointer;
 	background-color:#000;
@@ -20,37 +22,40 @@
 	padding:10px 0;
 	width:100%;
 }
-.App .cropped-image{
-	height:400px;/*ockert 600px;*/
+.io_entidad_widget_easyimage_EasyImage .cropped-image{
+	/*height:400px;*/
 	width:auto;
 }
-.App .cropped-image-container{
+.io_entidad_widget_easyimage_EasyImage .cropped-image-container{
 	margin-top:20px;
 	display:flex;
 	flex-direction:column;
 }
-.App ._coverImage-holder{
+.io_entidad_widget_easyimage_EasyImage ._coverImage-holder{
 	padding:25px 40px;
 	background-color:black;
 	border-radius:5px;
 	cursor:pointer;
 	margin-bottom:20px;
 }
-.App .container{
+.io_entidad_widget_easyimage_EasyImage .container{
 	display:flex;
 	flex-direction:column;
 	position:relative;
 }
-.App .crop-container{
+.io_entidad_widget_easyimage_EasyImage .crop-container{
 	height:600px;	
 	align-items:center;
 	margin:auto;
 	display:flex;
 	justify-content:center;
-	overflow:hidden;
+	/*overflow:hidden;*/
 	z-index:1;
 }
-.App .controls{
+.io_entidad_widget_easyimage_EasyImage .crop-container > div{
+	overflow:visible!important;
+}
+.io_entidad_widget_easyimage_EasyImage .controls{
 	box-sizing:border-box;
 	position:absolute;
 	bottom:0;
@@ -61,7 +66,7 @@
 	align-items:center;
 	padding:10px 0;
 }
-.App .Slider{
+.io_entidad_widget_easyimage_EasyImage .Slider{
 	z-index:2;
 	cursor:pointer;
 	background-color:#000;
@@ -69,7 +74,7 @@
 	padding:22px 0px;
 	align-items:center;
 }
-.App .reactEasyCrop_Container{
+.io_entidad_widget_easyimage_EasyImage .reactEasyCrop_Container{
 	position:absolute;
 	top:0;
 	left:0;
@@ -83,6 +88,6 @@
 	justify-content:center;
 	align-items:center;
 }
-.App .toolbox-button-active{
+.io_entidad_widget_easyimage_EasyImage .toolbox-button-active{
 	background:#020557;
 }

@@ -140,7 +140,7 @@ export default function EasyCrop({image,onSave,id,translations}){
 		<div>
 			<div className="toolbox-container">
 				<div className="toolbox" style={{display:"flex",flexDirection:"row",flexWrap:"nowrap"}}>
-					<table style={{width:"100%"}}>
+					<table style={{width:"100%",zIndex:2}}>
 						<tr>
 							<td style={{width:"7.5%"}}>
 								<button type="button" className={!cropDisabled?"toolbox-button-active":"toolbox-button"} onClick={toggleCropPan}>{translations.crop}</button>
@@ -161,7 +161,7 @@ export default function EasyCrop({image,onSave,id,translations}){
 								<button onClick={()=>{
 									inputRef.current.click();
 								}} style={{width:"100%" }}>{translations.upload}</button>
-								<input style={{display:"none"}} ref={inputRef} type="file" accept=".jpef, .png, .jpg" onChange={handleUpload} />
+								<input style={{display:"none"}} ref={inputRef} type="file" accept=".jpeg, .png, .jpg" onChange={handleUpload} />
 							</td>
 
 							<td style={{width:"20%"}}>
@@ -178,7 +178,7 @@ export default function EasyCrop({image,onSave,id,translations}){
 				</div>
 				<div className="container" >
 					<div className="crop-container">
-						{loading&&!imageLoaded&&<progress value="50" max="100"></progress>}
+						{/*loading&&!imageLoaded&&<progress value="50" max="100"></progress>*/}
 						<TransformWrapper
 							ref={panZoomRef}
 							initialScale={1}
