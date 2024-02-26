@@ -6,7 +6,13 @@ This widget can be used to upload an image file (PNG, JPEG, JPG or BMP) and modi
 - Zoom In/Out
 - Rotate Clockwise/AntiClockwise
 - Crop/Save
+- Upload
 - Download
+
+Additional features include
+
+- Translations for button labels
+- Rendering buttons using only icons to save space
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -38,6 +44,6 @@ Copy the widget and paste it inside the "widgets" folder in your application. Af
 ## Widget Parameters
 The widget requires the following parameters to be passed:
 
-1. Image entity as a list
-2. Image URL
-    Format Ex : http://localhost/file?target=window&guid=XXX&changeDate=XXX&name=XXX
+1. Image entity type
+2. Image GUID
+3. Optional On Save Microflow or Nanoflow
