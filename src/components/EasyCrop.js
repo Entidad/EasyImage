@@ -102,8 +102,8 @@ export default function EasyCrop({image,onSave,id,translations}){
 												onSave.disabledDuringExecution
 											)
 										){
-											await onSave.execute();
 											imgRef.current.setAttribute("src",croppedImage);
+											await onSave.execute();
 										}
 									}
 								},
