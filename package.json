@@ -1,7 +1,7 @@
 {
   "name": "easyimage",
   "widgetName": "EasyImage",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Image Cropping/Zooming/Rotation",
   "copyright": "© Mendix Technology BV 2022. All rights reserved.",
   "author": "Madhubalan Pushparajan",

@@ -32,6 +32,42 @@
 				<caption>Render Icons</caption>
 				<description/>
 			</property>
+			<property key="icon_crop" type="icon" required="false">
+				<caption>Icon Crop</caption>
+				<description/>
+			</property>
+			<property key="icon_pan" type="icon" required="false">
+				<caption>Icon Pan</caption>
+				<description/>
+			</property>
+			<property key="icon_zoomin" type="icon" required="false">
+				<caption>Icon Zoom In</caption>
+				<description/>
+			</property>
+			<property key="icon_zoomout" type="icon" required="false">
+				<caption>Icon Zoom Out</caption>
+				<description/>
+			</property>
+			<property key="icon_download" type="icon" required="false">
+				<caption>Icon Download</caption>
+				<description/>
+			</property>
+			<property key="icon_upload" type="icon" required="false">
+				<caption>Icon Upload</caption>
+				<description/>
+			</property>
+			<property key="icon_rotateclockwise" type="icon" required="false">
+				<caption>Icon Rotate Clockwise</caption>
+				<description/>
+			</property>
+			<property key="icon_rotateanticlockwise" type="icon" required="false">
+				<caption>Icon Rotate Anticlockwise</caption>
+				<description/>
+			</property>
+			<property key="icon_save" type="icon" required="false">
+				<caption>Icon Save</caption>
+				<description/>
+			</property>
 		</propertyGroup>
 		<propertyGroup caption="Translations">
 			<property key="translation_crop" type="textTemplate" required="false">

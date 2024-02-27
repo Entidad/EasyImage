@@ -13,6 +13,7 @@ Additional features include
 
 - Translations for button labels
 - Rendering buttons using only icons to save space
+- Glyphicon icon customization
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
