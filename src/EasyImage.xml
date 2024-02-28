@@ -22,6 +22,14 @@
 					<attributeType name="String"/>
 				</attributeTypes>
 			</property>
+			<property key="url" type="attribute" required="true">
+				<caption>Url</caption>
+				<description/>
+				<attributeTypes>
+					<attributeType name="String"/>
+				</attributeTypes>
+			</property>
+
 			<property key="onSave" type="action">
 				<caption>On save</caption>
 				<description />
@@ -66,6 +74,44 @@
 			</property>
 			<property key="icon_save" type="icon" required="false">
 				<caption>Icon Save</caption>
+				<description/>
+			</property>
+		</propertyGroup>
+		<propertyGroup caption="Toolbar">
+			<property key="render_icon_crop" type="boolean" defaultValue="true" required="true">
+				<caption>Render Icon Crop</caption>
+				<description/>
+			</property>
+			<property key="render_icon_pan" type="boolean" defaultValue="true" required="true">
+				<caption>Render Icon Pan</caption>
+				<description/>
+			</property>
+			<property key="render_icon_zoomin" type="boolean" defaultValue="true" required="true">
+				<caption>Render Icon Zoom In</caption>
+				<description/>
+			</property>
+			<property key="render_icon_zoomout" type="boolean" defaultValue="true" required="true">
+				<caption>Render Icon Zoom Out</caption>
+				<description/>
+			</property>
+			<property key="render_icon_download" type="boolean" defaultValue="true" required="true">
+				<caption>Render Icon Download</caption>
+				<description/>
+			</property>
+			<property key="render_icon_upload" type="boolean" defaultValue="true" required="true">
+				<caption>Render Icon Upload</caption>
+				<description/>
+			</property>
+			<property key="render_icon_rotateclockwise" type="boolean" defaultValue="true" required="true">
+				<caption>Render Icon Rotate Clockwise</caption>
+				<description/>
+			</property>
+			<property key="render_icon_rotateanticlockwise" type="boolean" defaultValue="true" required="true">
+				<caption>Render Icon Rotate Anticlockwise</caption>
+				<description/>
+			</property>
+			<property key="render_icon_save" type="boolean" defaultValue="true" required="true">
+				<caption>Render Icon Save</caption>
 				<description/>
 			</property>
 		</propertyGroup>

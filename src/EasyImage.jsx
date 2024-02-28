@@ -2,18 +2,20 @@ import{useEffect,useState,createElement}from"react";
 import EasyCrop from"./components/EasyCrop";
 import"./ui/EasyImage.css";
 function App(props){
-	window.props=props;
 	const[image,setImage]=useState("");
 	const[id,setId]=useState("");
 	const[imageUrl,setImageUrl]=useState("");
 	const[translations,setTranslations]=useState({});
 	const[icons,setIcons]=useState({});
+	const[toolbar,setToolbar]=useState({});
 	useEffect(()=>{
-		if(props?.image?.status=="available"&&props?.image?.value){
-			setImageUrl(props.image.value.uri);
-		}
-		if(props?.guid?.status=="available"&&props?.guid?.value) {
+		if(props?.guid?.status=="available"&&props?.guid?.value!=null&&props?.guid?.value!=""){
 			setId(props.guid.value);
+		}
+		if(props?.url?.status=="available"&&props.url.value!=null&&props.url.value!=""){
+			setImageUrl(props.url.value);
+		}else if(props?.image?.status=="available"&&props?.image?.value?.uri!=null&&props?.image?.value?.uri!=""){
+			setImageUrl(props.image.value.uri);
 		}
 		//translations
 		{
@@ -43,11 +45,24 @@ function App(props){
 				save:props?.icon_save?.status=="available"?"glyphicon "+props.icon_save.value.iconClass:null
 			});
 		}
-	},[props.guid.status,props.image.status]);
+		{
+			setToolbar({
+				crop:props.render_icon_crop,
+				pan:props.render_icon_pan,
+				zoomin:props.render_icon_zoomin,
+				zoomout:props.render_icon_zoomout,
+				download:props.render_icon_download,
+				upload:props.render_icon_upload,
+				rotateclockwise:props.render_icon_rotateclockwise,
+				rotateanticlockwise:props.render_icon_rotateanticlockwise,
+				save:props.render_icon_save
+			});
+		}
+	},[props.guid.status,props.url.status,props.image.status]);
 	return(
 		<div className="io_entidad_widget_easyimage_EasyImage">
 			<header className="io_entidad_widget_easyimage_EasyImage-header">
-				<EasyCrop onSave={props.onSave} image={imageUrl} id={id} translations={translations} renderIcons={props.renderIcons} icons={icons}/>
+				<EasyCrop onSave={props.onSave} image={imageUrl} id={id} translations={translations} renderIcons={props.renderIcons} icons={icons} toolbar={toolbar}/>
 			</header>
 		</div>
 	);

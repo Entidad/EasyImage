@@ -46,5 +46,6 @@ Copy the widget and paste it inside the "widgets" folder in your application. Af
 The widget requires the following parameters to be passed:
 
 1. Image entity type
-2. Image GUID
+2. Image GUID or Image URL
+   Image URL takes priority over GUID
 3. Optional On Save Microflow or Nanoflow
