@@ -3,8 +3,8 @@
   "widgetName": "EasyImage",
   "version": "1.0.4",
   "description": "Image Cropping/Zooming/Rotation",
-  "copyright": "© Mendix Technology BV 2022. All rights reserved.",
-  "author": "Madhubalan Pushparajan",
+  "copyright": "entidad.io",
+  "author": "Madhubalan Pushparajan, Ockert van Schalkwyk",
   "engines": {
     "node": ">=16"
   },
