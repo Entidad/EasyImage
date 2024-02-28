@@ -26,8 +26,6 @@ export default function EasyCrop(props){
 	useEffect(()=>{
 		setImageUrl(props.image);
 	},[props.image]);
-	/*
-	*/
 	const toggleCropPan=()=>{
 		setCropDisabled(!cropDisabled);
 	};

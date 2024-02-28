@@ -15,21 +15,20 @@
 				<caption>Image</caption>
 				<description/>
 			</property>
-			<property key="guid" type="attribute" required="true">
+			<property key="guid" type="attribute" required="false">
 				<caption>Guid</caption>
 				<description/>
 				<attributeTypes>
 					<attributeType name="String"/>
 				</attributeTypes>
 			</property>
-			<property key="url" type="attribute" required="true">
+			<property key="url" type="attribute" required="false">
 				<caption>Url</caption>
 				<description/>
 				<attributeTypes>
 					<attributeType name="String"/>
 				</attributeTypes>
 			</property>
-
 			<property key="onSave" type="action">
 				<caption>On save</caption>
 				<description />
