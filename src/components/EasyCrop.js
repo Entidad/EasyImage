@@ -8,9 +8,14 @@ import"../ui/EasyImage.css";
 import{TransformWrapper,TransformComponent}from"react-zoom-pan-pinch";
 export default function EasyCrop(props){
 	const imgRef=useRef(null);
+	window.imgRef=imgRef;
 	const panZoomRef=useRef(null);
+	window.panZoomRef=panZoomRef;
 	const reactCropRef=useRef(null);
 	const inputRef=useRef(null);
+	window.inputRef=inputRef;
+	const transformComponentRef=useRef(null);
+	window.transformComponentRef=transformComponentRef;
 	const[crop,setCrop]=useState(null);
 	const[rotation,setRotation]=useState(0);
 	const[scale,setScale]=useState(1);
@@ -144,19 +149,19 @@ export default function EasyCrop(props){
 		<div>
 			<div className="toolbox-container">
 				<div className="toolbox" style={{display:"flex"}}>
-					<div className="btn-group" style={{width:"100%",zIndex:2,display:"flex"}}>
+					<div className="btn-group">
 						{props.toolbar.crop?<button type="button" className={!cropDisabled?"btn btn-success":"btn btn-default"} onClick={toggleCropPan} title={props.renderIcons?props.translations.crop:""}>{props.renderIcons?<span className={props.icons.crop!=null?props.icons.crop:"glyphicon glyphicon-scissors"} aria-hidden="true"></span>:props.translations.crop}</button>:null}
 						{props.toolbar.pan?<button type="button" className={cropDisabled?"btn btn-success":"btn btn-default"} onClick={toggleCropPan} title={props.renderIcons?props.translations.pan:""}>{props.renderIcons?<span className={props.icons.pan!=null?props.icons.pan:"glyphicon glyphicon-move"} aria-hidden="true"></span>:props.translations.pan}</button>:null}
-						{props.toolbar.zoomin?<button className="btn btn-default" onClick={zoomIn} style={{ width: "100%" }} title={props.renderIcons?props.translations.zoomin:""}>{props.renderIcons?<span className={props.icons.zoomin!=null?props.icons.zoomin:"glyphicon glyphicon-zoom-in"} aria-hidden="true"></span>:props.translations.zoomin}</button>:null}
-						{props.toolbar.zoomout?<button className="btn btn-default" onClick={zoomOut} style={{ width: "100%" }} title={props.renderIcons?props.translations.zoomout:""}>{props.renderIcons?<span className={props.icons.zoomout!=null?props.icons.zoomout:"glyphicon glyphicon-zoom-out"} aria-hidden="true"></span>:props.translations.zoomout}</button>:null}
-						{props.toolbar.download?<button className="btn btn-default" onClick={handleDownload} style={{width:"100%" }} title={props.renderIcons?props.translations.download:""}>{props.renderIcons?<span className={props.icons.download!=null?props.icons.download:"glyphicon glyphicon-save"} aria-hidden="true"></span>:props.translations.download}</button>:null}
+						{props.toolbar.zoomin?<button className="btn btn-default" onClick={zoomIn} title={props.renderIcons?props.translations.zoomin:""}>{props.renderIcons?<span className={props.icons.zoomin!=null?props.icons.zoomin:"glyphicon glyphicon-zoom-in"} aria-hidden="true"></span>:props.translations.zoomin}</button>:null}
+						{props.toolbar.zoomout?<button className="btn btn-default" onClick={zoomOut} title={props.renderIcons?props.translations.zoomout:""}>{props.renderIcons?<span className={props.icons.zoomout!=null?props.icons.zoomout:"glyphicon glyphicon-zoom-out"} aria-hidden="true"></span>:props.translations.zoomout}</button>:null}
+						{props.toolbar.download?<button className="btn btn-default" onClick={handleDownload} title={props.renderIcons?props.translations.download:""}>{props.renderIcons?<span className={props.icons.download!=null?props.icons.download:"glyphicon glyphicon-save"} aria-hidden="true"></span>:props.translations.download}</button>:null}
 						{props.toolbar.upload?<button className="btn btn-default" onClick={()=>{
 							inputRef.current.click();
-						}} style={{width:"100%" }} title={props.renderIcons?props.translations.upload:""}>{props.renderIcons?<span className={props.icons.upload!=null?props.icons.upload:"glyphicon glyphicon-open"} aria-hidden="true"></span>:props.translations.upload}</button>:null}
-						{props.toolbar.upload?<input style={{display:"none"}} ref={inputRef} type="file" accept=".jpeg, .png, .jpg" onChange={handleUpload} />:null}
-						{props.toolbar.rotateclockwise?<button className="btn btn-default" onClick={rotateRight} style={{width:"100%"}} title={props.renderIcons?props.translations.rotateclockwise:""}>{props.renderIcons?<span className={props.icons.rotateclockwise!=null?props.icons.rotateclockwise:"glyphicon glyphicon-refresh"} aria-hidden="true"></span>:props.translations.rotateclockwise}</button>:null}
-						{props.toolbar.rotateanticlockwise?<button className="btn btn-default" onClick={rotateAntiRight} style={{width:"100%"}} title={props.renderIcons?props.translations.rotateanticlockwise:""}>{props.renderIcons?<span className={props.icons.rotateanticlockwise!=null?props.icons.rotateanticlockwise:"glyphicon glyphicon-refresh icon-flipped"} aria-hidden="true"></span>:props.translations.rotateanticlockwise}</button>:null}
-						{props.toolbar.save?<button className="btn btn-default" onClick={onSaveImage} style={{width:"100%"}} title={props.renderIcons?props.translations.save:""}>{props.renderIcons?<span className={props.icons.save!=null?props.icons.save:"glyphicon glyphicon-floppy-save"} aria-hidden="true"></span>:props.translations.save}</button>:null}
+						}} title={props.renderIcons?props.translations.upload:""}>{props.renderIcons?<span className={props.icons.upload!=null?props.icons.upload:"glyphicon glyphicon-open"} aria-hidden="true"></span>:props.translations.upload}</button>:null}
+						{props.toolbar.upload?<input ref={inputRef} style={{display:"none"}}type="file" accept=".jpeg, .png, .jpg" onChange={handleUpload} />:null}
+						{props.toolbar.rotateclockwise?<button className="btn btn-default" onClick={rotateRight} title={props.renderIcons?props.translations.rotateclockwise:""}>{props.renderIcons?<span className={props.icons.rotateclockwise!=null?props.icons.rotateclockwise:"glyphicon glyphicon-refresh"} aria-hidden="true"></span>:props.translations.rotateclockwise}</button>:null}
+						{props.toolbar.rotateanticlockwise?<button className="btn btn-default" onClick={rotateAntiRight} title={props.renderIcons?props.translations.rotateanticlockwise:""}>{props.renderIcons?<span className={props.icons.rotateanticlockwise!=null?props.icons.rotateanticlockwise:"glyphicon glyphicon-refresh icon-flipped"} aria-hidden="true"></span>:props.translations.rotateanticlockwise}</button>:null}
+						{props.toolbar.save?<button className="btn btn-default" onClick={onSaveImage} title={props.renderIcons?props.translations.save:""}>{props.renderIcons?<span className={props.icons.save!=null?props.icons.save:"glyphicon glyphicon-floppy-save"} aria-hidden="true"></span>:props.translations.save}</button>:null}
 					</div>
 				</div>
 				<div className="container" >
@@ -185,7 +190,9 @@ export default function EasyCrop(props){
 							onDragStart={(e)=>{
 							}}
 						>
-							<TransformComponent>
+							<TransformComponent
+								ref={transformComponentRef}
+							>
 								<ReactCrop
 									ref={reactCropRef}
 									src={imageUrl}
@@ -216,7 +223,7 @@ export default function EasyCrop(props){
 										crossorigin='anonymous'
 										src={imageUrl}
 										style={{
-											'transform':`rotate(${rotation}deg)`,
+											'transform':`rotate(${rotation}deg)`
 										}}
 										onLoad={onImageLoad}
 									/>
