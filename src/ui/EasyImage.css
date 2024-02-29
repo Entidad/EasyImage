@@ -16,11 +16,12 @@
 .io_entidad_widget_easyimage_EasyImage .toolbox-container .toolbox{
 }
 .io_entidad_widget_easyimage_EasyImage .toolbox-container .toolbox .btn-group{
+	width:100%;
 	display: flex;
 }
 .io_entidad_widget_easyimage_EasyImage .toolbox-container .toolbox .btn-group .btn{
 	z-index:2;
-	display: flex;
+	flex: 1;
 }
 .io_entidad_widget_easyimage_EasyImage .toolbox-container .toolbox .btn-group .glyphicon{
 }
