@@ -168,8 +168,8 @@ export default function EasyCrop(props){
 	};
 	const onSaveImage=useCallback(async()=>{
 		try{
-			window.completedCrop=completedCrop;
 			if(
+				completedCrop==null||
 				completedCrop.x==0&&
 				completedCrop.y==0&&
 				completedCrop.width==width&&
