@@ -1,7 +1,7 @@
 {
   "name": "easyimage",
   "widgetName": "EasyImage",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Image Cropping/Zooming/Rotation",
   "copyright": "entidad.io",
   "author": "Madhubalan Pushparajan, Ockert van Schalkwyk",
@@ -10,7 +10,7 @@
   },
   "license": "Apache-2.0",
   "config": {
-    "projectPath": "./test",
+    "projectPath": "../PlatformDemoApp-main",
     "mendixHost": "http://localhost:8080",
     "developmentPort": 3000
   },

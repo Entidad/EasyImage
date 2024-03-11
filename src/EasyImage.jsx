@@ -3,14 +3,14 @@ import EasyCrop from"./components/EasyCrop";
 import"./ui/EasyImage.css";
 function App(props){
 	const[image,setImage]=useState("");
-	const[id,setId]=useState("");
-	const[imageUrl,setImageUrl]=useState("");
+	const[imageId,setImageId]=useState(null);
+	const[imageUrl,setImageUrl]=useState(null);
 	const[translations,setTranslations]=useState({});
 	const[icons,setIcons]=useState({});
 	const[toolbar,setToolbar]=useState({});
 	useEffect(()=>{
 		if(props?.guid?.status=="available"&&props?.guid?.value!=null&&props?.guid?.value!=""){
-			setId(props.guid.value);
+			setImageId(props.guid.value);
 		}
 		if(props?.url?.status=="available"&&props.url.value!=null&&props.url.value!=""){
 			setImageUrl(props.url.value);
@@ -63,7 +63,7 @@ function App(props){
 	return(
 		<div className="io_entidad_widget_easyimage_EasyImage">
 			<header className="io_entidad_widget_easyimage_EasyImage-header">
-				<EasyCrop onSave={props.onSave} image={imageUrl} id={id} translations={translations} renderIcons={props.renderIcons} icons={icons} toolbar={toolbar}/>
+				<EasyCrop onSave={props.onSave} imageUrl={imageUrl} imageId={imageId} translations={translations} renderIcons={props.renderIcons} icons={icons} toolbar={toolbar}/>
 			</header>
 		</div>
 	);
