@@ -189,24 +189,28 @@ export default function EasyCrop(props){
 									window.setTimeout(()=>{
 										panZoomRef.current.centerView();
 									},500);
-									if(
-										props.onSave
-									){
+									try{
 										if(
-											props.onSave.canExecute&&
-											props.onSave.isAuthorized&&
-											!(
-												props.onSave.isExecuting&&
-												props.onSave.disabledDuringExecution
-											)
+											props.onSave
 										){
-											//attempt to clear out all other file upload boxes
-											document.querySelectorAll('.mx-imageuploader input[type=file]').forEach((n)=>{
-												let imageUploader=FindReact(n,2);
-												imageUploader.props.children.props.upload.setValue(null);
-											});
-											await props.onSave.execute();
+											if(
+												props.onSave.canExecute&&
+												props.onSave.isAuthorized&&
+												!(
+													props.onSave.isExecuting&&
+													props.onSave.disabledDuringExecution
+												)
+											){
+												//attempt to clear out all other file upload boxes
+												document.querySelectorAll('.mx-imageuploader input[type=file]').forEach((n)=>{
+													let imageUploader=FindReact(n,2);
+													imageUploader.props.children.props.upload.setValue(null);
+												});
+												await props.onSave.execute();
+											}
 										}
+									}catch(e){
+										console.error(e.toString());
 									}
 								},
 								function(e){
