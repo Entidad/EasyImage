@@ -1,4 +1,3 @@
-import"./ImageCrop.css";
 import{useState,useRef,useEffect,createElement,useCallback}from"react";
 import ReactCrop from"react-image-crop";
 import"react-image-crop/dist/ReactCrop.css";
@@ -39,6 +38,7 @@ export default function EasyCrop(props){
 	const canvasRef=useRef(null);
 	const transformComponentRef=useRef(null);
 	const panZoomRef=useRef(null);
+	window.panZoomRef=panZoomRef;
 	const inputRef=useRef(null);
 	const reactCropRef=useRef(null);
 	const[canvasImage,setCanvasImage]=useState(null);
@@ -68,7 +68,11 @@ export default function EasyCrop(props){
 				canvas.width=canvas_image.width;
 				canvas.height=canvas_image.height;
 				canvas_context.drawImage(canvas_image,0,0);
-				//setAngle(0);
+				panZoomRef.current.setTransform(
+					0,
+					0,
+					panZoomRef.current.instance.contentComponent.parentElement.parentElement.parentElement.parentElement.offsetWidth/panZoomRef.current.instance.contentComponent.firstChild.firstChild.firstChild.offsetWidth
+				)
 			};
 			canvas_image.src=dataUrl;
 			setCanvasContext(canvas_context);
@@ -92,7 +96,7 @@ export default function EasyCrop(props){
 		canvasContext.restore();
 	},[angle]);
 	useEffect(()=>()=>{
-		//console.info("1:unmount");
+		//unmount
 	},[]);
 	const toDataURL=(url,callback)=>{
 		let xhr=new XMLHttpRequest();
@@ -149,6 +153,11 @@ export default function EasyCrop(props){
 					setWidth(img.width);
 					setHeight(img.width);
 					canvas_context.drawImage(img,0,0);
+					panZoomRef.current.setTransform(
+						0,
+						0,
+						panZoomRef.current.instance.contentComponent.parentElement.parentElement.parentElement.parentElement.offsetWidth/panZoomRef.current.instance.contentComponent.firstChild.firstChild.firstChild.offsetWidth
+					)
 				};
 				img.src=reader.result;
 			}
@@ -171,9 +180,8 @@ export default function EasyCrop(props){
 				newCanvas=canvasRef.current;
 			}
 			const blob=await new Promise(resolve => newCanvas.toBlob(resolve));
-			//const blob=await new Promise(resolve => canvasRef.current.toBlob(resolve));
 			mx.data.get({
-				guid:imageId,//props.id
+				guid:imageId,
 				callback:(obj)=>{
 					mx.data.commit({
 						mxobj:obj,
@@ -187,7 +195,12 @@ export default function EasyCrop(props){
 									reactCropRef.current.props.onChange()
 									setCompletedCrop(null);
 									window.setTimeout(()=>{
-										panZoomRef.current.centerView();
+										//panZoomRef.current.centerView();
+										panZoomRef.current.setTransform(
+											0,
+											0,
+											panZoomRef.current.instance.contentComponent.parentElement.parentElement.parentElement.parentElement.offsetWidth/panZoomRef.current.instance.contentComponent.firstChild.firstChild.firstChild.offsetWidth
+										)
 									},500);
 									try{
 										if(
@@ -302,8 +315,6 @@ export default function EasyCrop(props){
 								onDragEnd={(e)=>{}}
 							>
 								<canvas ref={canvasRef} style={{
-									"background":"red",
-									"border":"0px"
 								}}/>
 							</ReactCrop>
 						</TransformComponent>

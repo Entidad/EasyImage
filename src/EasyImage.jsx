@@ -59,10 +59,9 @@ function App(props){
 				save:props.render_icon_save
 			});
 		}
-	//},[props.guid.status,props.url.status,props.image.status]);
 	},[props?.guid?.value,props?.url?.value,props?.image?.value?.uri]);
 	useEffect(()=>()=>{
-		//console.info("0:unmount");
+		//unmount
 	},[]);
 	return(
 		<div className="io_entidad_widget_easyimage_EasyImage">
