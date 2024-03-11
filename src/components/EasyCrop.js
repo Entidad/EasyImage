@@ -48,7 +48,9 @@ export default function EasyCrop(props){
 	const[imageId,setImageId]=useState(props.id);
 	const[imageDataUrl,setImageDataUrl]=useState(null);
 	const[width,setWidth]=useState(null);
+	window.width=width;
 	const[height,setHeight]=useState(null);
+	window.height=height;
 	const[angle,setAngle]=useState(0);
 	const[crop,setCrop]=useState(null);
 	const[completedCrop,setCompletedCrop]=useState();
@@ -166,6 +168,15 @@ export default function EasyCrop(props){
 	};
 	const onSaveImage=useCallback(async()=>{
 		try{
+			window.completedCrop=completedCrop;
+			if(
+				completedCrop.x==0&&
+				completedCrop.y==0&&
+				completedCrop.width==width&&
+				completedCrop.height==height
+			){
+				return;
+			}
 			const time=new Date().toLocaleTimeString();
 			let newCanvas=null;
 			if(completedCrop!=null){
