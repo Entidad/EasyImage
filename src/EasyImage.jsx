@@ -2,6 +2,7 @@ import{useEffect,useState,createElement}from"react";
 import EasyCrop from"./components/EasyCrop";
 import"./ui/EasyImage.css";
 function App(props){
+	window.props=props;
 	const[image,setImage]=useState("");
 	const[imageId,setImageId]=useState(null);
 	const[imageUrl,setImageUrl]=useState(null);
@@ -60,6 +61,9 @@ function App(props){
 		}
 	//},[props.guid.status,props.url.status,props.image.status]);
 	},[props?.guid?.value,props?.url?.value,props?.image?.value?.uri]);
+	useEffect(()=>()=>{
+		//console.info("0:unmount");
+	},[]);
 	return(
 		<div className="io_entidad_widget_easyimage_EasyImage">
 			<header className="io_entidad_widget_easyimage_EasyImage-header">

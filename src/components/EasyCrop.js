@@ -4,6 +4,37 @@ import ReactCrop from"react-image-crop";
 import"react-image-crop/dist/ReactCrop.css";
 import"../ui/EasyImage.css";
 import{TransformWrapper,TransformComponent}from"react-zoom-pan-pinch";
+//https://stackoverflow.com/questions/29321742/react-getting-a-component-from-a-dom-element-for-debugging
+const FindReact=(dom,traverseUp=0)=>{
+	const key=Object.keys(dom).find(key=>{
+		return key.startsWith("__reactFiber$")//react 17+
+			||key.startsWith("__reactInternalInstance$");//react <17
+	});
+	const domFiber=dom[key];
+	if(domFiber==null)return null;
+	//react <16
+	if(domFiber._currentElement){
+		let compFiber=domFiber._currentElement._owner;
+		for(let i=0;i<traverseUp;i++){
+			compFiber=compFiber._currentElement._owner;
+		}
+		return compFiber._instance;
+	}
+	//react 16+
+	const GetCompFiber=fiber=>{
+		//return fiber._debugOwner; // this also works, but is __DEV__ only
+		let parentFiber=fiber.return;
+		while(typeof parentFiber.type=="string") {
+			parentFiber=parentFiber.return;
+		}
+		return parentFiber;
+	};
+	let compFiber=GetCompFiber(domFiber);
+	for(let i=0;i<traverseUp;i++){
+		compFiber=GetCompFiber(compFiber);
+	}
+	return compFiber.stateNode;
+}
 export default function EasyCrop(props){
 	const canvasRef=useRef(null);
 	const transformComponentRef=useRef(null);
@@ -60,6 +91,9 @@ export default function EasyCrop(props){
 		canvasContext.drawImage(canvasImage,canvasRef.current.width/2-canvasImage.width/2,canvasRef.current.height/2-canvasImage.height/2,canvasImage.width,canvasImage.height);
 		canvasContext.restore();
 	},[angle]);
+	useEffect(()=>()=>{
+		//console.info("1:unmount");
+	},[]);
 	const toDataURL=(url,callback)=>{
 		let xhr=new XMLHttpRequest();
 		xhr.onload=()=>{
@@ -150,21 +184,11 @@ export default function EasyCrop(props){
 								{},
 								blob,
 								async()=>{
-									/*
-									setWidth(newCanvas.width);
-									setHeight(newCanvas.height);
-									setCanvasContext(newCanvas.getContext("2d"));
-									let newImg=document.createElement("img");
-									newImg.src=newCanvas.toDataURL();
-									setCanvasImage(newImg);
-									*/
 									reactCropRef.current.props.onChange()
 									setCompletedCrop(null);
 									window.setTimeout(()=>{
 										panZoomRef.current.centerView();
 									},500);
-									//panZoomRef.current.instance.setCenter()
-									/*
 									if(
 										props.onSave
 									){
@@ -176,11 +200,14 @@ export default function EasyCrop(props){
 												props.onSave.disabledDuringExecution
 											)
 										){
-
+											//attempt to clear out all other file upload boxes
+											document.querySelectorAll('.mx-imageuploader input[type=file]').forEach((n)=>{
+												let imageUploader=FindReact(n,2);
+												imageUploader.props.children.props.upload.setValue(null);
+											});
 											await props.onSave.execute();
 										}
 									}
-									*/
 								},
 								function(e){
 									console.error(e,"Error while saving image");
