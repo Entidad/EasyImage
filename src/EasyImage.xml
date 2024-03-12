@@ -67,8 +67,8 @@
 				<caption>Icon Rotate Clockwise</caption>
 				<description/>
 			</property>
-			<property key="icon_rotateanticlockwise" type="icon" required="false">
-				<caption>Icon Rotate Anticlockwise</caption>
+			<property key="icon_rotatecounterclockwise" type="icon" required="false">
+				<caption>Icon Rotate Counterclockwise</caption>
 				<description/>
 			</property>
 			<property key="icon_save" type="icon" required="false">
@@ -105,8 +105,8 @@
 				<caption>Render Icon Rotate Clockwise</caption>
 				<description/>
 			</property>
-			<property key="render_icon_rotateanticlockwise" type="boolean" defaultValue="true" required="true">
-				<caption>Render Icon Rotate Anticlockwise</caption>
+			<property key="render_icon_rotatecounterclockwise" type="boolean" defaultValue="true" required="true">
+				<caption>Render Icon Rotate Counterclockwise</caption>
 				<description/>
 			</property>
 			<property key="render_icon_save" type="boolean" defaultValue="true" required="true">
@@ -171,8 +171,8 @@
 					<translation lang="es_MX">Sentido Horario</translation>
 				</translations>
 			</property>
-			<property key="translation_rotateanticlockwise" type="textTemplate" required="false">
-				<caption>Rotate Anticlockwise</caption>
+			<property key="translation_rotatecounterclockwise" type="textTemplate" required="false">
+				<caption>Rotate Counterclockwise</caption>
 				<description/>
 				<translations>
 					<translation lang="en_US">Rotate Anticlockwise</translation>
