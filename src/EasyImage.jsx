@@ -2,20 +2,25 @@ import{useEffect,useState,createElement}from"react";
 import EasyCrop from"./components/EasyCrop";
 import"./ui/EasyImage.css";
 function App(props){
-	const[image,setImage]=useState("");
 	const[imageId,setImageId]=useState(null);
 	const[imageUrl,setImageUrl]=useState(null);
+	const[disabled,setDisabled]=useState(true);
 	const[translations,setTranslations]=useState({});
 	const[icons,setIcons]=useState({});
 	const[toolbar,setToolbar]=useState({});
 	useEffect(()=>{
+		console.info("main:useEffect:[props?.guid?.value,props?.url?.value,props?.image?.value?.uri]:beg");
 		if(props?.guid?.status=="available"&&props?.guid?.value!=null&&props?.guid?.value!=""){
 			setImageId(props.guid.value);
 		}
 		if(props?.url?.status=="available"&&props.url.value!=null&&props.url.value!=""){
 			setImageUrl(props.url.value);
+			setDisabled(false);
 		}else if(props?.image?.status=="available"&&props?.image?.value?.uri!=null&&props?.image?.value?.uri!=""){
 			setImageUrl(props.image.value.uri);
+			setDisabled(false);
+		}else{
+			setDisabled(true);
 		}
 		//translations
 		{
@@ -62,15 +67,18 @@ function App(props){
 				save:props.render_icon_save
 			});
 		}
+		console.info("main:useEffect:[props?.guid?.value,props?.url?.value,props?.image?.value?.uri]:end");
 	},[props?.guid?.value,props?.url?.value,props?.image?.value?.uri]);
 	useEffect(()=>()=>{
+		console.info("main:useEffect:[]:beg");
 		//unmount
+		console.info("main:useEffect:[]:end");
 	},[]);
 	return(
 		<div className="io_entidad_widget_easyimage_EasyImage">
-			<header className="io_entidad_widget_easyimage_EasyImage-header">
-				<EasyCrop onSave={props.onSave} imageUrl={imageUrl} imageId={imageId} translations={translations} renderIcons={props.renderIcons} icons={icons} toolbar={toolbar}/>
-			</header>
+			<div className="io_entidad_widget_easyimage_EasyImage-header">
+				<EasyCrop disabled={disabled} onSave={props.onSave} imageUrl={imageUrl} imageId={imageId} translations={translations} renderIcons={props.renderIcons} icons={icons} toolbar={toolbar}/>
+			</div>
 		</div>
 	);
 }

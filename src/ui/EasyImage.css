@@ -104,7 +104,8 @@
 	-ms-transform:scaleX(-1);
 }
 /*test*/
-/*.io_entidad_widget_easyimage_EasyImage*/ canvas{
+.io_entidad_widget_easyimage_EasyImage canvas{
+	width:unset!important;
 }
 .outerDiv{
         margin:30px
