@@ -66,6 +66,7 @@ export default function EasyCrop(props){
 			setCropDisabled(false);
 		}
 		setImageId(props.imageId);
+		if(props.imageUrl==null)return;
 		toDataURL(props.imageUrl,(dataUrl)=>{
 			setImageDataUrl(dataUrl);
 			let canvas=canvasRef.current;
@@ -179,7 +180,10 @@ export default function EasyCrop(props){
 		}
 	};
 	const onSaveImage=useCallback(async()=>{
+		//todo:
+		//	handle for no crop but rotation
 		try{
+			/*
 			if(
 				completedCrop==null||
 				completedCrop.x==0&&
@@ -188,6 +192,18 @@ export default function EasyCrop(props){
 				completedCrop.height==height
 			){
 				return;
+			}
+			*/
+			if(
+				completedCrop==null
+			){
+				setCompletedCrop({
+					x:0,
+					y:0,
+					width:width,
+					height:height
+				});
+
 			}
 			const time=new Date().toLocaleTimeString();
 			let newCanvas=null;
