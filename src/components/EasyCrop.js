@@ -38,8 +38,10 @@ export default function EasyCrop(props){
 	const canvasRef=useRef(null);
 	const transformComponentRef=useRef(null);
 	const panZoomRef=useRef(null);
+	window.panZoomRef=panZoomRef;
 	const inputRef=useRef(null);
 	const reactCropRef=useRef(null);
+	window.reactCropRef=reactCropRef;
 	const[canvasImage,setCanvasImage]=useState(null);
 	const[canvasContext,setCanvasContext]=useState(null);
 	const[cropDisabled,setCropDisabled]=useState(false);
@@ -73,6 +75,7 @@ export default function EasyCrop(props){
 					panZoomRef.current.instance.contentComponent.parentElement.parentElement.parentElement.parentElement.offsetWidth/panZoomRef.current.instance.contentComponent.firstChild.firstChild.firstChild.offsetWidth,
 					0
 				)
+				reactCropRef.current.props.onChange();
 			};
 			canvas_image.src=dataUrl;
 			setCanvasContext(canvas_context);
@@ -159,6 +162,7 @@ export default function EasyCrop(props){
 						panZoomRef.current.instance.contentComponent.parentElement.parentElement.parentElement.parentElement.offsetWidth/panZoomRef.current.instance.contentComponent.firstChild.firstChild.firstChild.offsetWidth,
 						0
 					)
+					reactCropRef.current.props.onChange();
 				};
 				img.src=reader.result;
 			}
