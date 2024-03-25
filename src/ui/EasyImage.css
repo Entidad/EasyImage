@@ -23,6 +23,7 @@
 	z-index:2;
 	flex:1;
 	margin:0px!important;
+	min-width:unset!important;
 }
 .io_entidad_widget_easyimage_EasyImage .toolbox-container .toolbox .btn-group .glyphicon{
 }
@@ -48,7 +49,10 @@
 	flex-direction:column;
 	position:relative;
 	*/
+	/*
+Mon Mar 25 18:57:45 SAST 2024
 	width:100%;
+	*/
 }
 .io_entidad_widget_easyimage_EasyImage .crop-container{
 	/*

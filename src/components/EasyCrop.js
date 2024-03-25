@@ -387,9 +387,11 @@ export default function EasyCrop(props){
 					</TransformWrapper>
 				</div>
 			</div>
-			<style>{`.col-lg.col-md.col{overflow:hidden;}`}</style>
 		</div>
 	);
+	//<style>{`.react-transform-wrapper{max-width:100%!important;}`}</style>
+	//<style>{`.col-lg.col-md.col{overflow:hidden;}`}</style>
+
 	/*
 	return(null);
 	*/
