@@ -21,7 +21,8 @@
 }
 .io_entidad_widget_easyimage_EasyImage .toolbox-container .toolbox .btn-group .btn{
 	z-index:2;
-	flex: 1;
+	flex:1;
+	margin:0px!important;
 }
 .io_entidad_widget_easyimage_EasyImage .toolbox-container .toolbox .btn-group .glyphicon{
 }

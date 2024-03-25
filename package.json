@@ -10,7 +10,7 @@
   },
   "license": "Apache-2.0",
   "config": {
-    "projectPath": "../PlatformDemoApp-main",
+    "projectPath": "../ImmigrationServices-dev_2024",
     "mendixHost": "http://localhost:8080",
     "developmentPort": 3000
   },
