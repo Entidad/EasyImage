@@ -1,4 +1,4 @@
-# Image Manipulation Zoom In/Out, Rotate Clockwise/AntiClockwise, Cropping, Download
+# Image Manipulation Zoom In/Out, Pan, Rotate Clockwise/AntiClockwise, Crop, Download
 
 # Description
 
