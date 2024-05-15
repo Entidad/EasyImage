@@ -4,7 +4,8 @@
 
 This widget can be used to upload an image file (PNG, JPEG, JPG or BMP) and modify the image in the following ways: 
 - Zoom In/Out
-- Rotate Clockwise/AntiClockwise
+- Pan
+- Rotate Clockwise/Counterclockwise
 - Crop/Save
 - Upload
 - Download
