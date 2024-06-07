@@ -1,7 +1,7 @@
 {
   "name": "easyimage",
   "widgetName": "EasyImage",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Image Cropping/Zooming/Rotation",
   "copyright": "entidad.io",
   "author": "Madhubalan Pushparajan, Ockert van Schalkwyk",
@@ -30,6 +30,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.4",
     "classnames": "^2.2.6",
+    "ip": "^2.0.1",
     "react-easy-crop": "^5.0.3",
     "react-image-crop": "^11.0.1",
     "react-zoom-pan-pinch": "^3.4.2"
